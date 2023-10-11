@@ -56,3 +56,4 @@ processar_lojas(filiais_rj, 'RJ')
 processar_lojas(filiais_sp, 'SP')
 
 db.close_db()
+
