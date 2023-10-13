@@ -1,5 +1,4 @@
 venv/
 oracle_db.py
 __pycache__
-
 *.xlsx
