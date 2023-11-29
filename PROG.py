@@ -2,13 +2,38 @@ import pandas as pd
 from oracle_db import DBOracle
 import shutil
 import sys
-print(sys.path)
+#print(sys.path)
 
+print("""
+      
+                                                                                                      
+                                                                                                
+        CCCCCCCCCCCCC                                            tttt                           
+     CCC::::::::::::C                                         ttt:::t                           
+   CC:::::::::::::::C                                         t:::::t                           
+  C:::::CCCCCCCC::::C                                         t:::::t                           
+ C:::::C       CCCCCCuuuuuu    uuuuuu      ssssssssss   ttttttt:::::ttttttt       ooooooooooo   
+C:::::C              u::::u    u::::u    ss::::::::::s  t:::::::::::::::::t     oo:::::::::::oo 
+C:::::C              u::::u    u::::u  ss:::::::::::::s t:::::::::::::::::t    o:::::::::::::::o
+C:::::C              u::::u    u::::u  s::::::ssss:::::stttttt:::::::tttttt    o:::::ooooo:::::o
+C:::::C              u::::u    u::::u   s:::::s  ssssss       t:::::t          o::::o     o::::o
+C:::::C              u::::u    u::::u     s::::::s            t:::::t          o::::o     o::::o
+C:::::C              u::::u    u::::u        s::::::s         t:::::t          o::::o     o::::o
+ C:::::C       CCCCCCu:::::uuuu:::::u  ssssss   s:::::s       t:::::t    tttttto::::o     o::::o
+  C:::::CCCCCCCC::::Cu:::::::::::::::uus:::::ssss::::::s      t::::::tttt:::::to:::::ooooo:::::o
+   CC:::::::::::::::C u:::::::::::::::us::::::::::::::s       tt::::::::::::::to:::::::::::::::o
+     CCC::::::::::::C  uu::::::::uu:::u s:::::::::::ss          tt:::::::::::tt oo:::::::::::oo 
+        CCCCCCCCCCCCC    uuuuuuuu  uuuu  sssssssssss              ttttttttttt     ooooooooooo   
+                                                                                                
+                                                                                                
+                                                                                                
+      
+      """)
 
 db = DBOracle()
 
 def criar_arquivo(filial, estado):
-    # Sua consulta SQL
+    # Query SQL
     query = f"""
         SELECT b1_cod CODIGO, b1_codbar COD_BAR, b1_prv1 PMC, b1_desc DESCRICAO,
         (SELECT z00_prv1 FROM z00010 WHERE z00_filial = b1_filial AND b1_cod = z00_codprd AND z00_uf = '{estado}' AND d_e_l_e_t_ = ' ') PRECO,
@@ -32,12 +57,12 @@ def criar_arquivo(filial, estado):
 
     df.to_excel(caminho_arquivo, index=False)
 
-    # Copiar o arquivo para o diretório especificado
+    # Copiar o arquivo para publico_geral
     destino = r'\\172.20.153.59\publico_geral\Tecnologia da Informacao\Camila'
     shutil.copy(caminho_arquivo, destino)
 
-    # Print indicando que a loja foi processada
-    print(f'Loja {filial} processada com sucesso!')
+    # Print loja feita
+    print(f'Loja {filial} feita com sucesso!')
 
 def processar_lojas(filiais, estado):
     for filial in filiais:
